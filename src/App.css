@@ -8,26 +8,49 @@
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+#root,
+#root > div {
+  height: 100%;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.note {
+  display: block;
+  float: left;
+  display: table-row;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.measure-wrapper {
+  height: 50%;
+  width: 50%;
+  float: left;
+}
+.measure {
+  list-style: none;
+  width: 100%;
+  float: left;
+  position: relative;
+  display: table;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.note-img {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.measure:before {
+  content: "";
+  position: absolute;
+  bottom: 50%;
+  border-bottom: 2px black solid;
+  width: 90%;
+  z-index: 0;
 }

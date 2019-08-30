@@ -6,12 +6,21 @@ class Tempo extends Component {
   }
   render() {
     return (
-      <>
-        <h1 className="play" onClick={this.props.beginTempo}>
-          Play
-        </h1>
-      </>
+      <div className="footer">
+        <a
+          href="#"
+          className={this.getTempoClasses()}
+          onClick={this.props.beginTempo}
+        ></a>
+      </div>
     );
+  }
+
+  getTempoClasses() {
+    let classes = "play";
+    classes += this.props.active ? " active" : "";
+
+    return classes;
   }
 }
 

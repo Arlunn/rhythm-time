@@ -46,6 +46,11 @@ body {
   display: inline-block;
 }
 
+.play {
+  position: absolute;
+  bottom: 0;
+}
+
 .measure:before {
   content: "";
   position: absolute;

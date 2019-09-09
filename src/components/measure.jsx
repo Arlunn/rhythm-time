@@ -9,6 +9,10 @@ class Measure extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ measure: this.props.notes });
+  }
+
   render() {
     return (
       <div className="measure-wrapper">

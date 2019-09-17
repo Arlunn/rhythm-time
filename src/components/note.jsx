@@ -23,7 +23,7 @@ class Note extends Component {
   getNoteClasses() {
     let classes = "note";
     classes += this.props.note.hit === "true" ? " animate" : "";
-    classes += this.value === 0.25 ? " quarter" : " eight";
+    classes += this.props.note.value == 0.25 ? " quarter" : " eight";
 
     return classes;
   }

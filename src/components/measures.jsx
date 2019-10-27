@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Measure from "./measure";
-import Footer from "./footer";
+import PlayButton from "./playButton";
+import ResetButton from "./resetButton";
 import Points from "./points";
 import Timer from "./timer";
+import Instructions from "./instructions";
 import soundfile from "../assets/beat.wav";
-import Sound from "react-sound";
 
 class Measures extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Measures extends Component {
     this.points = 0;
     this.lineNumber = 1; // used to rotate measures, mod 1 corresponds to top measures, mod 0 corresponds to bottom measures
     this.timeOuts = [];
+    this.timerAnimation = "";
 
     //bind functions
     this.rotateMeasures = this.rotateMeasures.bind(this);
@@ -24,6 +26,7 @@ class Measures extends Component {
     this.handleSpace = this.handleSpace.bind(this);
     this.beat = this.beat.bind(this);
     this.endGame = this.endGame.bind(this);
+    this.resetGame = this.resetGame.bind(this);
     this.state = {
       measures: this.getNotes(4),
       on: false,
@@ -49,8 +52,9 @@ class Measures extends Component {
         <Measure id="measure2" notes={this.state.measures[1]} />
         <Measure id="measure3" notes={this.state.measures[2]} />
         <Measure id="measure4" notes={this.state.measures[3]} />
-        <Footer beginTempo={this.handlePlayClick} active={this.state.on} />
-        <Timer active={this.state.on} />
+        <PlayButton beginTempo={this.handlePlayClick} active={this.state.on} />
+        <ResetButton resetGame={this.resetGame} />
+        <Timer active={this.state.on} animation={this.timerAnimation} />
       </div>
     );
   }
@@ -108,16 +112,16 @@ class Measures extends Component {
       var newMeasures = this.getNotes(1);
       const replacementMeasures = this.state.measures.slice();
       var modNum = this.lineNumber % 4;
-      if (modNum == 1) {
+      if (modNum === 1) {
         // the first line of measures
         replacementMeasures[0] = newMeasures[0];
-      } else if (modNum == 2) {
+      } else if (modNum === 2) {
         // the second line of measures
         replacementMeasures[1] = newMeasures[0];
-      } else if (modNum == 3) {
+      } else if (modNum === 3) {
         // the third line of measures
         replacementMeasures[2] = newMeasures[0];
-      } else if (modNum == 0) {
+      } else if (modNum === 0) {
         // the fourth line of measures
         replacementMeasures[3] = newMeasures[0];
       }
@@ -137,7 +141,7 @@ class Measures extends Component {
     while (
       this.state.measures[this.noteMarker.measureIndex % 4][
         this.noteMarker.noteIndex
-      ].hit == "true" ||
+      ].hit === "true" ||
       elapsedTime > this.noteMarker.currentBeat + this.acceptedDifference
     ) {
       this.noteMarker.currentBeat +=
@@ -165,6 +169,10 @@ class Measures extends Component {
     clearTimeout(this.rotateMeasuresTimeout);
     this.elapsedTime = 0;
     this.setState({ finished: true });
+  }
+
+  resetGame() {
+    window.location.reload(false);
   }
 
   beat() {
@@ -221,7 +229,7 @@ class Measures extends Component {
       let notes = [];
       let index = 1;
       while (i > 0) {
-        if (Math.random() > 0.5 || i === 0.5) {
+        if (Math.random() > 0.75 || i % 1 === 0.5) {
           notes.push({
             id: "note" + index,
             value: ".125",

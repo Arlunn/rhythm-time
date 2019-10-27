@@ -8,7 +8,10 @@ class Timer extends Component {
   render() {
     return (
       <div className="timer-container interface">
-        <h2 className={this.getTimerClasses()}></h2>
+        <h2
+          className={this.getTimerClasses()}
+          style={{ animation: this.animation }}
+        ></h2>
       </div>
     );
   }

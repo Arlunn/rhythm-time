@@ -23,6 +23,12 @@ body {
 }
 
 .note {
+  &.quarter {
+    margin-right: 6vw;
+  }
+  &.eight {
+    margin-right: 2vw;
+  }
   display: flex;
   flex-wrap: nowrap;
   flex: 1;
@@ -52,7 +58,6 @@ body {
   position: relative;
   display: flex;
   border-left: 5px black solid;
-  margin-left: 2.5vmin;
   outline-offset: 5px;
   top: 45%;
   transform: translateY(-45%);

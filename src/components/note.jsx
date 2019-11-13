@@ -11,9 +11,9 @@ class Note extends Component {
     return (
       <li
         className={this.getNoteClasses()}
-        onClick={() => this.props.onHit(this.props.note)}
         value={this.props.note.value}
         hit={this.props.note.hit}
+        id={this.props.note.id}
       >
         <img className="note-img" src={this.props.src} />
       </li>
@@ -21,8 +21,11 @@ class Note extends Component {
   }
 
   getNoteClasses() {
-    let classes = "note";
-    classes += this.props.note.hit === "true" ? " animate" : "";
+    let classes = this.props.note.id === "rest" ? "rest" : "note";
+    classes +=
+      this.props.note.hit === "true" && this.props.note.id != "rest"
+        ? " animate"
+        : "";
     classes += this.props.note.value == 0.25 ? " quarter" : " eight";
 
     return classes;

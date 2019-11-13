@@ -30,7 +30,8 @@ class Measures extends Component {
     this.state = {
       measures: this.getNotes(4),
       on: false,
-      finished: false
+      finished: false,
+      started: false
     };
   }
 
@@ -52,6 +53,7 @@ class Measures extends Component {
         <Measure id="measure2" notes={this.state.measures[1]} />
         <Measure id="measure3" notes={this.state.measures[2]} />
         <Measure id="measure4" notes={this.state.measures[3]} />
+        {!this.state.started && <Instructions />}
         <PlayButton beginTempo={this.handlePlayClick} active={this.state.on} />
         <ResetButton resetGame={this.resetGame} />
         <Timer active={this.state.on} animation={this.timerAnimation} />
@@ -93,12 +95,12 @@ class Measures extends Component {
   }
 
   handlePlayClick() {
-    this.setState({ on: !this.state.on }, () => {
+    this.setState({ on: !this.state.on, started: true }, () => {
       if (this.state.on) {
         this.resetIntervals();
         this.timeOuts.push(setTimeout(this.endGame, 60000 - this.elapsedTime));
         this.startTime = new Date();
-      } else {
+      } else if (!this.state.finished) {
         this.elapsedTime += new Date() - this.startTime; // in milliseconds
         clearInterval(this.interval);
         this.clearTimeouts();
@@ -192,6 +194,7 @@ class Measures extends Component {
 
   handleSpace() {
     if (this.state.on && !this.state.finished) {
+      console.log("space");
       var currentDate = new Date();
       var elapsedTime =
         (currentDate - this.startTime + this.elapsedTime) / 1000;
@@ -207,16 +210,21 @@ class Measures extends Component {
       // Change state using index of measure & note then set that note's hit to false
       if (diff < this.acceptedDifference) {
         //measure[this.noteMarker.noteIndex] = { ...note };
-        measures[this.noteMarker.measureIndex % 4][
-          this.noteMarker.noteIndex
-        ].hit = "true";
-        this.points +=
-          parseFloat(
-            this.state.measures[this.noteMarker.measureIndex % 4][
-              this.noteMarker.noteIndex
-            ].value
-          ) * 8;
-        this.setState({ measures });
+        if (
+          measures[this.noteMarker.measureIndex % 4][this.noteMarker.noteIndex]
+            .id != "rest"
+        ) {
+          measures[this.noteMarker.measureIndex % 4][
+            this.noteMarker.noteIndex
+          ].hit = "true";
+          this.points +=
+            parseFloat(
+              this.state.measures[this.noteMarker.measureIndex % 4][
+                this.noteMarker.noteIndex
+              ].value
+            ) * 8;
+          this.setState({ measures });
+        }
       }
     }
   }
@@ -229,22 +237,42 @@ class Measures extends Component {
       let notes = [];
       let index = 1;
       while (i > 0) {
-        if (Math.random() > 0.75 || i % 1 === 0.5) {
-          notes.push({
-            id: "note" + index,
-            value: ".125",
-            hit: "false",
-            src:
-              "http://exchangedownloads.smarttech.com/public/content/b4/b4611811-841d-4d6d-8093-2e38a0bc1f60/previews/medium/0001.png"
-          });
+        var rand = Math.random();
+        if (rand > 0.8 || i % 1 === 0.5) {
+          if (rand > 0.75) {
+            notes.push({
+              id: "note" + index,
+              value: ".125",
+              hit: "false",
+              src:
+                "http://exchangedownloads.smarttech.com/public/content/b4/b4611811-841d-4d6d-8093-2e38a0bc1f60/previews/medium/0001.png"
+            });
+          } else {
+            notes.push({
+              id: "rest",
+              value: ".125",
+              hit: "false",
+              src:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Eighth_rest.svg/266px-Eighth_rest.svg.png"
+            });
+          }
           i -= 0.5;
-        } else {
+        } else if (rand > 0.25) {
           notes.push({
             id: "note" + index,
             value: ".25",
             hit: "false",
             src:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Quarter_note_with_upwards_stem.svg/614px-Quarter_note_with_upwards_stem.svg.png"
+          });
+          i -= 1;
+        } else {
+          notes.push({
+            id: "rest",
+            value: ".25",
+            hit: "false",
+            src:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Crotchet_rest_alt_plain-svg.svg/83px-Crotchet_rest_alt_plain-svg.svg.png"
           });
           i -= 1;
         }

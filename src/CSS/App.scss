@@ -22,7 +22,8 @@ body {
   width: 100%;
 }
 
-.note {
+.note,
+.rest {
   &.quarter {
     margin-right: 6vw;
   }
@@ -36,6 +37,7 @@ body {
   justify-content: space-around;
   position: relative;
   float: left;
+  align-self: center;
 }
 
 .app {
@@ -44,13 +46,23 @@ body {
   margin-bottom: 10vh;
   margin-top: 10vh;
 }
-
 .measure-wrapper {
   width: 70%;
-  max-width: 700px;
+  max-width: 1000px;
   height: 25%;
   margin: auto;
 }
+@media screen and (max-width: 1000px) {
+  .measure-wrapper {
+    width: 95%;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .measure-wrapper {
+    width: 50%;
+  }
+}
+
 .measure {
   list-style: none;
   float: left;
@@ -72,6 +84,11 @@ body {
 .note-img {
   height: 7.5vh;
   width: 5vw;
+}
+
+.rest .note-img {
+  height: 5vh;
+  width: 3vw;
 }
 
 .measure:before {

@@ -25,6 +25,7 @@ class Measure extends Component {
               onHit={this.handleHit}
               hit={note.hit}
               note={note}
+              id={note.id}
             />
           ))}
         </ul>

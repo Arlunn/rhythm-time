@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import b1 from "../assets/b1.png";
 
 class Note extends Component {
   /*
@@ -15,7 +16,10 @@ class Note extends Component {
         hit={this.props.note.hit}
         id={this.props.note.id}
       >
-        <img className="note-img" src={this.props.src} />
+        <img
+          className="note-img"
+          src={require("../assets/" + this.props.src)}
+        />
       </li>
     );
   }

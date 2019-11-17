@@ -6,6 +6,7 @@ import Points from "./points";
 import Timer from "./timer";
 import Instructions from "./instructions";
 import soundfile from "../assets/beat.wav";
+import b1 from "../assets/b1.png";
 
 class Measures extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Measures extends Component {
     this.lineNumber = 1; // used to rotate measures, mod 1 corresponds to top measures, mod 0 corresponds to bottom measures
     this.timeOuts = [];
     this.timerAnimation = "";
+    this.streak = 0;
 
     //bind functions
     this.rotateMeasures = this.rotateMeasures.bind(this);
@@ -224,36 +226,49 @@ class Measures extends Component {
               ].value
             ) * 8;
           this.setState({ measures });
+          this.streak++;
+        } else {
+          this.streak = 0;
         }
+      } else {
+        this.streak = 0;
       }
     }
   }
 
   // Returns randomized notes that fit in 4 beats
   getNotes(numberOfMeasures) {
+    console.log(b1);
     var listOfMeasures = [];
+    let color = 0;
     while (numberOfMeasures > 0) {
       let i = 4;
       let notes = [];
       let index = 1;
       while (i > 0) {
         var rand = Math.random();
+        var col;
+        if (color % 3 == 0) {
+          col = "b";
+        } else if (color % 3 == 1) {
+          col = "g";
+        } else {
+          col = "p";
+        }
         if (rand > 0.8 || i % 1 === 0.5) {
           if (rand > 0.75) {
             notes.push({
               id: "note" + index,
               value: ".125",
               hit: "false",
-              src:
-                "http://exchangedownloads.smarttech.com/public/content/b4/b4611811-841d-4d6d-8093-2e38a0bc1f60/previews/medium/0001.png"
+              src: col + "1.svg"
             });
           } else {
             notes.push({
               id: "rest",
               value: ".125",
               hit: "false",
-              src:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Eighth_rest.svg/266px-Eighth_rest.svg.png"
+              src: col + "1.svg"
             });
           }
           i -= 0.5;
@@ -262,8 +277,7 @@ class Measures extends Component {
             id: "note" + index,
             value: ".25",
             hit: "false",
-            src:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Quarter_note_with_upwards_stem.svg/614px-Quarter_note_with_upwards_stem.svg.png"
+            src: col + "1.svg"
           });
           i -= 1;
         } else {
@@ -271,12 +285,12 @@ class Measures extends Component {
             id: "rest",
             value: ".25",
             hit: "false",
-            src:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Crotchet_rest_alt_plain-svg.svg/83px-Crotchet_rest_alt_plain-svg.svg.png"
+            src: col + "1.svg"
           });
           i -= 1;
         }
         index++;
+        color++;
       }
       numberOfMeasures--;
       listOfMeasures.push(notes);

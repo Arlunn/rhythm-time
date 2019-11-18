@@ -25,7 +25,7 @@ class Note extends Component {
   }
 
   getNoteClasses() {
-    let classes = this.props.note.id === "rest" ? "rest" : "note";
+    let classes = this.props.note.type === "rest" ? "rest" : "note";
     classes +=
       this.props.note.hit === "true" && this.props.note.id != "rest"
         ? " animate"

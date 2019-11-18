@@ -26,12 +26,11 @@ $green: #4bd255;
 
 .instructions {
   z-index: 10;
-  width: 20vw;
+  width: 50vw;
   height: 70px;
-  left: $size * 2;
-  bottom: 7vh;
-  margin: auto;
-  color: grey;
+  left: 25%;
+  bottom: 45%;
+  color: black;
 
   /*this to solve "the content will not be cut when the window is smaller than the content": */
   max-width: 80%;
@@ -46,6 +45,11 @@ $green: #4bd255;
   font-size: 30px;
   font-family: "Orbitron", sans-serif;
   animation: glow 3s ease-in-out infinite alternate;
+  opacity: 0;
+  &.active {
+    animation: fade 8s ease-out;
+    animation-fill-mode: both;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -90,52 +94,26 @@ $green: #4bd255;
 }
 
 .play {
-  bottom: -8vh;
+  bottom: 1vh;
   display: block;
-  width: 20vw;
-  height: 20vh;
+  width: 8vw;
+  height: 8vh;
   position: absolute;
   z-index: 1;
   transition: all $transition-time;
-  left: 0;
+  left: 2vw;
+  cursor: pointer;
 }
 
 .reset {
-  bottom: 0;
+  bottom: -0.7vh;
   display: block;
-  width: 0;
-  height: 0;
-  border-top: $size solid transparent;
-  border-bottom: $size solid transparent;
-  border-left: ($size * 1.2) solid $foreground;
-  margin: ($size * 2) auto $size auto;
+  width: 7vh;
+  height: 7vw;
   position: absolute;
   z-index: 1;
-  transition: all $transition-time;
-  left: ($size * 10);
-  &:before {
-    content: "";
-    position: absolute;
-    top: ($size * -1.5);
-    left: ($size * -2.3);
-    bottom: ($size * -1.5);
-    right: ($size * -0.7);
-    border-radius: 50%;
-    border: ($size * 0.2) solid $foreground;
-    z-index: 2;
-    transition: all $transition-time;
-  }
-  &:after {
-    content: "";
-    opacity: 0;
-    transition: opacity ($transition-time * 2);
-  }
-  &:hover,
-  &:focus {
-    &:before {
-      transform: scale(1.1);
-    }
-  }
+  left: 10vw;
+  cursor: pointer;
 }
 
 @keyframes countdown {
@@ -148,7 +126,7 @@ $green: #4bd255;
 }
 
 .timer {
-  background: $green;
+  background: $color;
   height: 100%;
   width: 100%;
   text-align: right;
@@ -183,5 +161,17 @@ $green: #4bd255;
   to {
     text-shadow: 0 0 20px $color, 0 0 30px $color, 0 0 40px $color,
       0 0 50px $color, 0 0 60px $color, 0 0 70px $color, 0 0 80px $color;
+  }
+}
+@keyframes fade {
+  from {
+    text-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 30px $color,
+      0 0 40px $color, 0 0 50px $color, 0 0 60px $color, 0 0 70px $color;
+    opacity: 1;
+  }
+  to {
+    text-shadow: 0 0 20px $color, 0 0 30px $color, 0 0 40px $color,
+      0 0 50px $color, 0 0 60px $color, 0 0 70px $color, 0 0 80px $color;
+    opacity: 0;
   }
 }

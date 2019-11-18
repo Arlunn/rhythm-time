@@ -26,6 +26,7 @@ class Measure extends Component {
               hit={note.hit}
               note={note}
               id={note.id}
+              type={note.type}
             />
           ))}
         </ul>

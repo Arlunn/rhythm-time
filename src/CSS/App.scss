@@ -15,6 +15,7 @@
 html,
 .app {
   background-color: black;
+  overflow: hidden;
 }
 body {
   height: 100%;
@@ -28,10 +29,10 @@ body {
 .note,
 .rest {
   &.quarter {
-    margin-right: 6vw;
+    margin-right: 3vw;
   }
   &.eight {
-    margin-right: 2vw;
+    margin-right: 1.5vw;
   }
   display: flex;
   flex-wrap: nowrap;
@@ -84,14 +85,27 @@ body {
   animation-fill-mode: both;
 }
 
-.note-img {
+.quarter {
   height: 10vh;
   width: 8vw;
+  flex-grow: 2;
+
+  &.rest {
+    height: 8vh;
+    width: 5vw;
+  }
 }
 
-.rest .note-img {
-  height: 5vh;
-  width: 3vw;
+.eight {
+  &.note .note-img {
+    height: 8vh;
+    width: 5vw;
+  }
+
+  &.rest .note-img {
+    height: 5vh;
+    width: 3vw;
+  }
 }
 
 .measure:before {

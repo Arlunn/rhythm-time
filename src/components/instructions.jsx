@@ -7,9 +7,16 @@ class Instructions extends Component {
   render() {
     return (
       <div className="instructions interface">
-        <p className="instructions-text">Press Play!</p>
+        <p className={this.getPlayClasses()}>Press Space to the beat!</p>
       </div>
     );
+  }
+
+  getPlayClasses() {
+    let classes = "instructions-text";
+    classes += this.props.active ? " active" : "";
+    classes += this.props.started ? " glow" : "";
+    return classes;
   }
 }
 

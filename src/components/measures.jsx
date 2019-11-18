@@ -7,6 +7,7 @@ import Timer from "./timer";
 import Instructions from "./instructions";
 import soundfile from "../assets/beat.wav";
 import b1 from "../assets/b1.png";
+import { restElement } from "@babel/types";
 
 class Measures extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Measures extends Component {
         <Measure id="measure2" notes={this.state.measures[1]} />
         <Measure id="measure3" notes={this.state.measures[2]} />
         <Measure id="measure4" notes={this.state.measures[3]} />
-        {!this.state.started && <Instructions />}
+        <Instructions active={this.state.started} />
         <PlayButton beginTempo={this.handlePlayClick} active={this.state.on} />
         <ResetButton resetGame={this.resetGame} />
         <Timer active={this.state.on} animation={this.timerAnimation} />
@@ -256,25 +257,28 @@ class Measures extends Component {
           col = "p";
         }
         if (rand > 0.8 || i % 1 === 0.5) {
-          if (rand > 0.75) {
+          if (rand > 0.8) {
             notes.push({
               id: "note" + index,
+              type: "note",
               value: ".125",
               hit: "false",
-              src: col + "1.svg"
+              src: col + "4.svg"
             });
           } else {
             notes.push({
-              id: "rest",
+              id: "rest" + index,
+              type: "rest",
               value: ".125",
               hit: "false",
-              src: col + "1.svg"
+              src: "eighthRest.svg"
             });
           }
           i -= 0.5;
-        } else if (rand > 0.25) {
+        } else if (rand > 0.275) {
           notes.push({
             id: "note" + index,
+            type: "note",
             value: ".25",
             hit: "false",
             src: col + "1.svg"
@@ -282,10 +286,11 @@ class Measures extends Component {
           i -= 1;
         } else {
           notes.push({
-            id: "rest",
+            id: "rest" + index,
+            type: "rest",
             value: ".25",
             hit: "false",
-            src: col + "1.svg"
+            src: "quarterRest.svg"
           });
           i -= 1;
         }
@@ -295,6 +300,7 @@ class Measures extends Component {
       numberOfMeasures--;
       listOfMeasures.push(notes);
     }
+    console.log(listOfMeasures);
     return listOfMeasures;
   }
 }

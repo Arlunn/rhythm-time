@@ -7,7 +7,11 @@ class ResetButton extends Component {
   render() {
     return (
       <div className="reset-container interface">
-        <a href="#" className="reset" onClick={this.props.resetGame}></a>
+        <img
+          className="reset"
+          onClick={this.props.resetGame}
+          src={require("../assets/restart.svg")}
+        ></img>
       </div>
     );
   }

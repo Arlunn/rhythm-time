@@ -6,18 +6,15 @@ $transition-time: 0.4s;
 $color: #5dbcd2;
 $green: #4bd255;
 
-.play-container {
-  position: absolute;
-  bottom: 0;
-  width: 10%;
-  height: 10%;
-}
-
+.play-container,
 .reset-container {
   position: absolute;
   bottom: 0;
   width: 10%;
   height: 10%;
+}
+.reset-container {
+  left: 7vw;
 }
 
 .interface {
@@ -54,21 +51,14 @@ $green: #4bd255;
 
 @media screen and (max-width: 500px) {
   .instructions-text {
-    font-size: 15px;
-  }
-  .instructions {
-    left: $size / 6;
-    bottom: 5vh;
+    font-size: 8px;
+    line-height: 30px;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .instructions-text {
     font-size: 22px;
-  }
-  .instructions {
-    left: $size / 4;
-    bottom: 5vh;
   }
 }
 
@@ -93,28 +83,27 @@ $green: #4bd255;
   margin-top: -5vh;
 }
 
-.play {
+.play,
+.reset {
   bottom: 1vh;
   display: block;
   width: 8vw;
   height: 8vh;
   position: absolute;
   z-index: 1;
-  transition: all $transition-time;
   left: 2vw;
   cursor: pointer;
 }
-
+/*
 .reset {
-  bottom: -0.7vh;
+  bottom: 1vh;
   display: block;
   width: 7vh;
   height: 7vw;
   position: absolute;
   z-index: 1;
-  left: 10vw;
   cursor: pointer;
-}
+}*/
 
 @keyframes countdown {
   from {
@@ -153,6 +142,44 @@ $green: #4bd255;
   background: $background;
 }
 
+// Streaks
+.streak-container {
+  bottom: 2vh;
+  left: 27.5%;
+  width: 45vw;
+  height: 15vh;
+  opacity: 0;
+  &.streak-five,
+  &.streak-fifteen {
+    animation: shake 2s linear;
+    animation-fill-mode: both;
+    transform-origin: 50% 50%;
+  }
+  &.streak-ten {
+    animation: shake2 2s linear;
+    animation-fill-mode: both;
+  }
+
+  .streak-text {
+    height: 100%;
+    right: 0;
+    z-index: 0;
+  }
+  .streak-image {
+    height: 100%;
+    width: 100%;
+  }
+  .streak-number {
+    height: 100%;
+    left: 0;
+    width: 30%;
+    z-index: 2;
+    float: left;
+  }
+}
+
+//animations
+
 @keyframes glow {
   from {
     text-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 30px $color,
@@ -172,6 +199,66 @@ $green: #4bd255;
   to {
     text-shadow: 0 0 20px $color, 0 0 30px $color, 0 0 40px $color,
       0 0 50px $color, 0 0 60px $color, 0 0 70px $color, 0 0 80px $color;
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0deg);
+    opacity: 1;
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+    opacity: 0;
+  }
+}
+@keyframes shake2 {
+  0% {
+    transform: skewX(-15deg);
+    opacity: 1;
+  }
+  5% {
+    transform: skewX(15deg);
+  }
+  10% {
+    transform: skewX(-15deg);
+  }
+  15% {
+    transform: skewX(15deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
     opacity: 0;
   }
 }

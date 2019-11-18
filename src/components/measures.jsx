@@ -6,8 +6,7 @@ import Points from "./points";
 import Timer from "./timer";
 import Instructions from "./instructions";
 import soundfile from "../assets/beat.wav";
-import b1 from "../assets/b1.png";
-import { restElement } from "@babel/types";
+import Streak from "./streak";
 
 class Measures extends Component {
   constructor(props) {
@@ -50,7 +49,7 @@ class Measures extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="app" onClick={this.handleSpace}>
         <Points points={this.points} />
         <Measure id="measure1" notes={this.state.measures[0]} />
         <Measure id="measure2" notes={this.state.measures[1]} />
@@ -60,6 +59,7 @@ class Measures extends Component {
         <PlayButton beginTempo={this.handlePlayClick} active={this.state.on} />
         <ResetButton resetGame={this.resetGame} />
         <Timer active={this.state.on} animation={this.timerAnimation} />
+        <Streak streak={this.streak} />
       </div>
     );
   }
@@ -136,7 +136,6 @@ class Measures extends Component {
       // State doesn't update unless setState is called twice
       this.setState({});
       this.lineNumber++;
-      console.log("rotate");
     }, 2000);
   }
 
@@ -197,7 +196,6 @@ class Measures extends Component {
 
   handleSpace() {
     if (this.state.on && !this.state.finished) {
-      console.log("space");
       var currentDate = new Date();
       var elapsedTime =
         (currentDate - this.startTime + this.elapsedTime) / 1000;
@@ -215,7 +213,7 @@ class Measures extends Component {
         //measure[this.noteMarker.noteIndex] = { ...note };
         if (
           measures[this.noteMarker.measureIndex % 4][this.noteMarker.noteIndex]
-            .id != "rest"
+            .type != "rest"
         ) {
           measures[this.noteMarker.measureIndex % 4][
             this.noteMarker.noteIndex
@@ -239,7 +237,6 @@ class Measures extends Component {
 
   // Returns randomized notes that fit in 4 beats
   getNotes(numberOfMeasures) {
-    console.log(b1);
     var listOfMeasures = [];
     let color = 0;
     while (numberOfMeasures > 0) {
@@ -300,7 +297,6 @@ class Measures extends Component {
       numberOfMeasures--;
       listOfMeasures.push(notes);
     }
-    console.log(listOfMeasures);
     return listOfMeasures;
   }
 }

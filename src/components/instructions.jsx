@@ -7,7 +7,7 @@ class Instructions extends Component {
   render() {
     return (
       <div className="instructions interface">
-        <p className={this.getPlayClasses()}>Press Space to the beat!</p>
+        <p className={this.getPlayClasses()}>Tap or Press Space to the beat!</p>
       </div>
     );
   }

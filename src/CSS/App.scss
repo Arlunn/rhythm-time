@@ -15,7 +15,7 @@
 html,
 .app {
   background-color: black;
-  overflow: hidden;
+  // overflow: hidden;
 }
 body {
   height: 100%;
@@ -97,15 +97,19 @@ body {
 }
 
 .eight {
-  &.note .note-img {
-    height: 8vh;
-    width: 5vw;
+  &.note {
+    height: 6.7vh;
+    width: 4.5vw;
   }
 
-  &.rest .note-img {
+  &.rest {
     height: 5vh;
     width: 3vw;
   }
+}
+
+.note-img {
+  overflow: hidden;
 }
 
 .measure:before {

@@ -54,6 +54,21 @@ $green: #4bd255;
     font-size: 8px;
     line-height: 30px;
   }
+  .streak-container {
+    .streak-text {
+      height: 100%;
+      right: 0;
+      z-index: 0;
+      width: 50%;
+    }
+    .streak-number {
+      height: 100%;
+      left: 0;
+      width: 30%;
+      z-index: 2;
+      float: left;
+    }
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -164,10 +179,7 @@ $green: #4bd255;
     height: 100%;
     right: 0;
     z-index: 0;
-  }
-  .streak-image {
-    height: 100%;
-    width: 100%;
+    width: 70%;
   }
   .streak-number {
     height: 100%;

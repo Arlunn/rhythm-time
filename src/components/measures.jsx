@@ -98,18 +98,25 @@ class Measures extends Component {
   }
 
   handlePlayClick() {
-    this.setState({ on: !this.state.on, started: true }, () => {
-      if (this.state.on) {
-        this.resetIntervals();
-        this.timeOuts.push(setTimeout(this.endGame, 60000 - this.elapsedTime));
-        this.startTime = new Date();
-      } else if (!this.state.finished) {
-        this.elapsedTime += new Date() - this.startTime; // in milliseconds
-        clearInterval(this.interval);
-        this.clearTimeouts();
-        clearInterval(this.rotateInterval);
-      }
-    });
+    if (!this.state.finished) {
+      this.setState({ on: !this.state.on, started: true }, () => {
+        if (this.state.on) {
+          this.resetIntervals();
+          this.timeOuts.push(
+            setTimeout(this.endGame, 60000 - this.elapsedTime)
+          );
+          this.startTime = new Date();
+        } else {
+          this.elapsedTime += new Date() - this.startTime; // in milliseconds
+          clearInterval(this.interval);
+          this.clearTimeouts();
+          clearInterval(this.rotateInterval);
+        }
+      });
+    } /*
+     else if (!this.state.finished) {
+        
+      }*/
   }
 
   rotateMeasures() {

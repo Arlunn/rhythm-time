@@ -34,6 +34,11 @@ body {
   &.eight {
     margin-right: 1.5vw;
   }
+
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex;
   display: flex;
   flex-wrap: nowrap;
   flex: 1;
@@ -77,6 +82,10 @@ body {
   float: left;
   width: 100%;
   position: relative;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex;
   display: flex;
   border-left: 3px lightgrey solid;
   outline-offset: 5px;

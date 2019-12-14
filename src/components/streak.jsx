@@ -21,11 +21,11 @@ class Streak extends Component {
 
   getStreakNumberClasses() {
     let classes = "streak-container interface";
-    if (this.props.streak > 15) {
+    if (this.props.streak > 14) {
       classes += " streak-fifteen";
-    } else if (this.props.streak > 10) {
+    } else if (this.props.streak > 9) {
       classes += " streak-ten";
-    } else if (this.props.streak > 5) {
+    } else if (this.props.streak > 4) {
       classes += " streak-five";
     }
 

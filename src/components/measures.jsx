@@ -13,7 +13,7 @@ class Measures extends Component {
     super(props);
     this.audio = new Audio(soundfile);
     this.acceptedDifference = 0.3; // in sec
-    this.elapsedTime = 0; // used to keep track of time since game started taking into account pauses
+    this.elapsedTime = -1000; // used to keep track of time since game started taking into account pauses
     this.points = 0;
     this.lineNumber = 1; // used to rotate measures, mod 1 corresponds to top measures, mod 0 corresponds to bottom measures
     this.timeOuts = [];
@@ -188,7 +188,6 @@ class Measures extends Component {
 
   beat() {
     this.audio.play();
-    console.log(this.elapsedTime);
   }
 
   handleKeyDown(event) {

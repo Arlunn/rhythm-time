@@ -1,3 +1,12 @@
+## Overview
+
+This is a web app that teaches players how to read beginner rhythm in a fun, interactive way!
+
+Instructions:
+1. Press play button in the bottom left corner
+2. Tap along to the notes & beat
+3. Have fun & get a high score!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

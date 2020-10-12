@@ -1,6 +1,6 @@
 ## Overview
 
-This is a web app that teaches players how to read beginner rhythm.
+This is a web app that teaches players how to read beginner rhythm in a fun, interactive way!
 
 Instructions:
 1. Press play button in the bottom left corner

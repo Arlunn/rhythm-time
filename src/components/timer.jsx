@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 
 class Timer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="timer-container interface">
-        <h2
+        <div
           className={this.getTimerClasses()}
           style={{ animation: this.animation }}
-        ></h2>
+        ></div>
       </div>
     );
   }

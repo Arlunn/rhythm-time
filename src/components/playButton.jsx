@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
 class PlayButton extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="play-container interface">
@@ -12,6 +9,7 @@ class PlayButton extends Component {
           className={this.getPlayClasses()}
           onClick={this.props.beginTempo}
           src={require("../assets/" + this.getSrc())}
+          alt="Play"
         ></img>
       </div>
     );

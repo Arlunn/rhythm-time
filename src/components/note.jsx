@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import b1 from "../assets/b1.png";
 
 class Note extends Component {
   /*
@@ -18,6 +17,7 @@ class Note extends Component {
       >
         <img
           className="note-img"
+          alt="Note"
           src={require("../assets/" + this.props.src)}
         />
       </li>
@@ -27,10 +27,10 @@ class Note extends Component {
   getNoteClasses() {
     let classes = this.props.note.type === "rest" ? "rest" : "note";
     classes +=
-      this.props.note.hit === "true" && this.props.note.id != "rest"
+      this.props.note.hit === "true" && this.props.note.id !== "rest"
         ? " animate"
         : "";
-    classes += this.props.note.value == 0.25 ? " quarter" : " eight";
+    classes += this.props.note.value === 0.25 ? " quarter" : " eight";
 
     return classes;
   }

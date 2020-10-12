@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
 class ResetButton extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="reset-container interface">
@@ -11,6 +8,7 @@ class ResetButton extends Component {
           className="reset"
           onClick={this.props.resetGame}
           src={require("../assets/restart.svg")}
+          alt="Reset"
         ></img>
       </div>
     );

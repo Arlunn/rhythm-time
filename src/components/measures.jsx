@@ -219,7 +219,7 @@ class Measures extends Component {
         //measure[this.noteMarker.noteIndex] = { ...note };
         if (
           measures[this.noteMarker.measureIndex % 4][this.noteMarker.noteIndex]
-            .type != "rest"
+            .type !== "rest"
         ) {
           measures[this.noteMarker.measureIndex % 4][
             this.noteMarker.noteIndex
@@ -252,9 +252,9 @@ class Measures extends Component {
       while (i > 0) {
         var rand = Math.random();
         var col;
-        if (color % 3 == 0) {
+        if (color % 3 === 0) {
           col = "b";
-        } else if (color % 3 == 1) {
+        } else if (color % 3 === 1) {
           col = "g";
         } else {
           col = "p";

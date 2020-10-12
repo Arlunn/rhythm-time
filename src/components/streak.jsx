@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 
 class Streak extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className={this.getStreakNumberClasses()}>
         <img
           className="streak-number"
+          alt="Streak Number"
           src={require("../assets/" + this.getSource() + ".svg")}
         ></img>
         <img
           className="streak-text"
+          alt="Streak Text"
           src={require("../assets/streak.svg")}
         ></img>
       </div>
